@@ -1,9 +1,10 @@
 package id.ramdannur.movieappcompose
 
 import android.app.Application
-import id.ramdannur.movieappcompose.di.databaseModule
-import id.ramdannur.movieappcompose.di.networkModule
-import id.ramdannur.movieappcompose.di.repositoryModule
+import id.ramdannur.movieappcompose.core.di.databaseModule
+import id.ramdannur.movieappcompose.core.di.networkModule
+import id.ramdannur.movieappcompose.core.di.repositoryModule
+import id.ramdannur.movieappcompose.di.useCaseModule
 import id.ramdannur.movieappcompose.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -21,6 +22,7 @@ class MyApplication : Application() {
                     databaseModule,
                     networkModule,
                     repositoryModule,
+                    useCaseModule,
                     viewModelModule
                 )
             )

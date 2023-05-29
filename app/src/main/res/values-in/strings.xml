@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_home">Beranda</string>
+    <string name="menu_favorite">Favorit</string>
+    <string name="menu_about">Tentang</string>
+    <string name="back">Kembali</string>
+    <string name="change_language">Ganti Bahasa</string>
+    <string name="email">Email</string>
+    <string name="nick_name">Nama Panggilan</string>
+    <string name="work">Pekerjaan</string>
+    <string name="hobby">Hobi</string>
+</resources>

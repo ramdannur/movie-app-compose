@@ -6,8 +6,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
-import id.ramdannur.movieappcompose.ui.navigation.Screen
-import id.ramdannur.movieappcompose.ui.theme.MovieAppComposeTheme
+import id.ramdannur.movieappcompose.navigation.Screen
+import id.ramdannur.movieappcompose.theme.MovieAppComposeTheme
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

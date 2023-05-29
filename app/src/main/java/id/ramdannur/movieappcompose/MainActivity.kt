@@ -1,6 +1,9 @@
 package id.ramdannur.movieappcompose
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,8 +13,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -21,7 +28,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -32,13 +43,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import id.ramdannur.movieappcompose.ui.navigation.NavigationItem
-import id.ramdannur.movieappcompose.ui.navigation.Screen
-import id.ramdannur.movieappcompose.ui.screen.about.AboutScreen
-import id.ramdannur.movieappcompose.ui.screen.detail.DetailScreen
-import id.ramdannur.movieappcompose.ui.screen.favorite.FavoriteScreen
-import id.ramdannur.movieappcompose.ui.screen.home.HomeScreen
-import id.ramdannur.movieappcompose.ui.theme.MovieAppComposeTheme
+import id.ramdannur.movieappcompose.about.AboutScreen
+import id.ramdannur.movieappcompose.detail.DetailScreen
+import id.ramdannur.movieappcompose.favorite.FavoriteScreen
+import id.ramdannur.movieappcompose.home.HomeScreen
+import id.ramdannur.movieappcompose.navigation.NavigationItem
+import id.ramdannur.movieappcompose.navigation.Screen
+import id.ramdannur.movieappcompose.theme.MovieAppComposeTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,13 +77,33 @@ fun MovieApp(
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
             if (currentRoute != Screen.Detail.route) {
+                var showMenu by remember { mutableStateOf(false) }
+
                 TopAppBar(
                     title = {
                         Text(text = "Movie App")
+                    },
+                    actions = {
+                        IconButton(onClick = { showMenu = !showMenu }) {
+                            Icon(Icons.Default.MoreVert, contentDescription = null)
+                        }
+                        DropdownMenu(
+                            expanded = showMenu,
+                            onDismissRequest = { showMenu = false }
+                        ) {
+                            DropdownMenuItem(
+                                text = {
+                                    Text(text = stringResource(id = R.string.change_language))
+                                },
+                                onClick = {
+                                    openLocalSettings(context)
+                                })
+                        }
                     }
                 )
             }
@@ -121,6 +153,11 @@ fun MovieApp(
             }
         }
     }
+}
+
+private fun openLocalSettings(context: Context) {
+    val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+    context.startActivity(intent)
 }
 
 @Composable

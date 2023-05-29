@@ -1,11 +1,13 @@
 <resources>
-    <string name="app_name">Movie App (Compose)</string>
+    <string name="app_name" translatable="false">Movie App (Compose)</string>
     <string name="menu_home">Home</string>
     <string name="menu_favorite">Favorite</string>
     <string name="menu_about">About</string>
     <string name="back">Back</string>
-    <string name="lorem_ipsum">Lorem Ipsum</string>
-    <string name="lorem_ipsum_full">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-    <string name="empty_data">Empty Data…</string>
-    <string name="placeholder_search">Search</string>
+    <string name="lorem_ipsum_full" translatable="false">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="change_language">Change Language</string>
+    <string name="email">Email</string>
+    <string name="nick_name">Nick Name</string>
+    <string name="work">Work</string>
+    <string name="hobby">Hobby</string>
 </resources>
