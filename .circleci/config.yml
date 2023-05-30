@@ -2,6 +2,7 @@ version: 2.1
  
 orbs:
   android: circleci/android@2.3.0
+  
 jobs:
   build:
     executor:
@@ -23,6 +24,9 @@ jobs:
           paths:
             - ~/.android/build-cache
             - ~/.android/cache
+      - run:
+          name: Run Test
+          command: ./gradlew test
       - run:
           name: Run Build
           command: ./gradlew build
