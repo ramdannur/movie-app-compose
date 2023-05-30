@@ -16,8 +16,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-    }
 
+        buildConfigField("String", "LOCAL_DB_NAME", "\"Movie.db\"")
+        buildConfigField("String", "SQLITE_PASSPHRASE", "\"movieapp\"")
+        buildConfigField("String", "API_HOST", "\"api.themoviedb.org\"")
+        buildConfigField("String", "API_KEY", "\"6a631cfb34027be57967a27d800e3061\"")
+        buildConfigField("String", "THUMB_IMAGE_HOST", "\"image.tmdb.org\"")
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,6 +38,7 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.3.2'

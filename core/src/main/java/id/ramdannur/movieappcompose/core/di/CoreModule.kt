@@ -10,6 +10,7 @@ import id.ramdannur.movieappcompose.core.domain.repository.IMovieRepository
 import id.ramdannur.movieappcompose.core.utils.Config
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.BuildConfig
@@ -25,7 +26,7 @@ val databaseModule = module {
     factory { get<MovieDatabase>().favoriteDao() }
 
     single {
-        val passphrase: ByteArray = SQLiteDatabase.getBytes("movieapp".toCharArray())
+        val passphrase: ByteArray = SQLiteDatabase.getBytes(Config.SQLITE_PASSPHRASE.toCharArray())
         val factory = SupportFactory(passphrase)
 
         Room.databaseBuilder(
@@ -45,10 +46,17 @@ val loggingInterceptor = if (BuildConfig.DEBUG) {
 
 val networkModule = module {
     single {
+        val hostname = Config.API_HOST
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/NPIMWkzcNG/MyZsVExrC6tdy5LTZzeeKg2UlnGG55UY=")
+            .add(hostname, "sha256/DxH4tt40L+eduF6szpY6TONlxhZhBd+pJ9wbHlQ2fuw=")
+            .build()
+
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner)
             .build()
     }
     single {
