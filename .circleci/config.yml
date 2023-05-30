@@ -25,11 +25,11 @@ jobs:
             - ~/.android/build-cache
             - ~/.android/cache
       - run:
-          name: Run Lint Tests
-          command: ./gradlew lint test
-      - run:
           name: Run Unit Test
           command: ./gradlew test
+      - run:
+          name: Run Lint Tests
+          command: ./gradlew lint test
       - run:
           name: Run Build
           command: ./gradlew build
