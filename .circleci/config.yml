@@ -6,6 +6,8 @@ jobs:
   build:
     executor:
         name: android/android-docker
+        resource-class: large
+        tag: 2023.04.1
     steps:
       - checkout
       - restore_cache:
