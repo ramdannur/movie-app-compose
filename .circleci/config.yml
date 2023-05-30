@@ -5,9 +5,7 @@ orbs:
 jobs:
   build:
     executor:
-        name: android/android-machine
-        resource-class: large
-        tag: 2021.10.1
+        name: android/android-docker
     steps:
       - checkout
       - restore_cache:
@@ -19,7 +17,7 @@ jobs:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - save_cache:
-          key: 'android-orb-v1-{{ epoch }}'
+          key: 'android-orb-v2-{{ epoch }}'
           paths:
             - ~/.android/build-cache
             - ~/.android/cache
