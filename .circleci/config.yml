@@ -6,6 +6,11 @@ orbs:
 jobs:
   build:
     executor: android/android
+    parameters:
+        java-version:
+            default: 17
+            description: The version of OpenJDK to change to
+            type: integer
     steps:
       - checkout
       - restore_cache:
